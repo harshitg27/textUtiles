@@ -1,7 +1,5 @@
 import React, {useState} from 'react'
 
-
-
 export default function TextForm(props) {
   const [text , setText] = useState('') ;
   const handleUpClick = ()=> {
@@ -18,11 +16,13 @@ export default function TextForm(props) {
   }
   
   return (
-    <div>
+    <div style={{color : props.mode === 'light' ? 'black' : 'white'}}>
         <div className="mb-3 , container">
           <h1>{props.heading}</h1>
             {/* <label forEach="MyBox" className="form-label">{props.heading}</label> */}
-            <textarea className="form-control" id="exampleFormControlTextarea1" onChange={handleOnChange} value={text} rows="10"></textarea>
+            <textarea className="form-control" id="exampleFormControlTextarea1" 
+            style={{background : props.mode === 'light' ? 'white' : 'grey' ,
+            color : props.mode === 'light' ? 'black' : 'white'}} onChange={handleOnChange} value={text} rows="10"></textarea>
         </div>
         <button className='btn btn-primary mx-1' onClick={handleUpClick}> Convert to Uppercase</button>
         <button className='btn btn-primary mx-1' onClick={handlelwClick}> Convert to LowerCase</button>
@@ -33,7 +33,7 @@ export default function TextForm(props) {
           <p> {text.split(" ").length} Words and {text.length} characters</p>
           <p>{0.008 * text.split(" ").length } Minutes Takes to Read</p>
           <h4>Preview</h4>
-          <p>{text}</p>
+          <p>{text.length>0 ? text: 'Enter Text For Preview'}</p>
         </div>
     </div>
   )
